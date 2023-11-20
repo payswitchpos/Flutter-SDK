@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
                                 apiUser: kApiUser,
                                 description: 'Hello',
                                 email: 'theteller@payswitch.com.gh',
-                                merchsntID: kmerchantId,
+                                merchantID: kmerchantId,
                                 transactionID: '000000000049')
                             .then((value) {
                           // final snackBar = SnackBar(

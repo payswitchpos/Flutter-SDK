@@ -50,15 +50,18 @@ You can then create a `Charge` object with the access code and card details. The
 ```dart
   CheckoutRequest  checkout = CheckoutRequest();
   
-  checkout.initRequest(context,
-                                platform: 'pro',
-                                amount: '000000000010',
-                                apiKeys: "##############",
-                                apiUser: "##############",
-                                description: 'Hello',
-                                email: 'theteller@payswitch.com.gh',
-                                merchsntID: kmerchantId,
-                                transactionID: '000000000052')
+          
+   checkout.initRequest(
+             context,
+             platform: 'pro',
+             amount: '000000000010',
+             apiKeys: "##############",
+             apiUser: "##############",
+             description: 'Hello',
+             email: 'theteller@payswitch.com.gh',
+             merchsntID: kmerchantId,
+             transactionID: '000000000052',
+             );
 
  
 ```
@@ -83,7 +86,6 @@ Just send the payment details to  `plugin.chargeCard`
         ..putCustomField('Charged From', 'Flutter PLUGIN');
       _chargeCard();
 ``` -->
-
 
 
 

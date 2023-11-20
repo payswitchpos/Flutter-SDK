@@ -13,13 +13,13 @@ class CheckoutRequest {
       required String amount,
       required String description,
       required String apiKeys,
-      required String merchsntID,
+      required String merchantID,
       required String apiUser,
       required String transactionID,
       Color? themeColor}) async {
     dynamic data;
     Map<String, dynamic> body = {
-      "merchant_id": merchsntID,
+      "merchant_id": merchantID,
       "transaction_id": transactionID,
       "desc": description,
       "amount": amount,
