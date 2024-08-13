@@ -25,7 +25,7 @@ class RemoverServices {
           // "Cache-Control": "no-cache"
         }).then((value) {
       var decodedResponse = json.decode(value.body);
-      print(decodedResponse);
+      // print(decodedResponse);
       if (decodedResponse['code'] == 200) {
         responseData = InitModel.fromJson(decodedResponse);
       }
