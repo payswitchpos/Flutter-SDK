@@ -1,9 +1,3 @@
-// To parse this JSON data, do
-//
-//     final initModel = initModelFromJson(jsonString);
-
-import 'dart:convert';
-
 
 class InitModel {
     String? status;
