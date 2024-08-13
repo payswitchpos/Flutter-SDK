@@ -9,6 +9,7 @@ class CheckoutRequest {
   final service = RemoverServices();
   Future<dynamic> initRequest(BuildContext context,
       {String? email,
+      String? redirectUrl,
       required String platform,
       required String amount,
       required String description,
@@ -16,6 +17,8 @@ class CheckoutRequest {
       required String merchantID,
       required String apiUser,
       required String transactionID,
+      
+
       Color? themeColor}) async {
     dynamic data;
     Map<String, dynamic> body = {
@@ -23,7 +26,7 @@ class CheckoutRequest {
       "transaction_id": transactionID,
       "desc": description,
       "amount": amount,
-      "redirect_url":
+      "redirect_url": redirectUrl ??
           "https://test.theteller.net/checkout/checkout/eU1xSFN5Ky92MUt5dmpnT",
       "email": email,
       "API_Key": apiKeys,
