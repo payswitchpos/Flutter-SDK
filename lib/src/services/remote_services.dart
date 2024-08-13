@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import  'package:http/http.dart' as http ;
 import 'package:the_teller_checkout/src/model/model.dart';
 
@@ -25,7 +26,7 @@ class RemoverServices {
           // "Cache-Control": "no-cache"
         }).then((value) {
       var decodedResponse = json.decode(value.body);
-      // print(decodedResponse);
+      debugPrint(decodedResponse.toString());
       if (decodedResponse['code'] == 200) {
         responseData = InitModel.fromJson(decodedResponse);
       }
