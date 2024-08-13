@@ -61,6 +61,7 @@ You can then create a `Charge` object with the access code and card details. The
              email: 'theteller@payswitch.com.gh',
              merchsntID: kmerchantId,
              transactionID: '000000000052',
+              redirectUrl: "##############",
              );
 
  
