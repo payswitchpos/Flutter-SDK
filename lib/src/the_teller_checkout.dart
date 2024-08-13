@@ -17,7 +17,7 @@ class CheckoutRequest {
       required String merchantID,
       required String apiUser,
       required String transactionID,
-      
+
 
       Color? themeColor}) async {
     dynamic data;
@@ -37,16 +37,16 @@ class CheckoutRequest {
             platform: platform, apiKey: apiKeys, userApi: apiUser, body: body)
         .then((response) async {
       if (response.status == 'success') {
-        debugPrint(response.checkoutUrl!);
+        // debugPrint(response.checkoutUrl.toString());
        
         data = await Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) => WebViewExample(
-                    themeColor: themeColor ?? Color.fromARGB(255, 26, 3, 144),
+                    themeColor: themeColor ?? const Color.fromARGB(255, 26, 3, 144),
                     url: response.checkoutUrl!)));
 
-        debugPrint("=====================$data");
+        // debugPrint("=====================$data");
       }
     });
 
