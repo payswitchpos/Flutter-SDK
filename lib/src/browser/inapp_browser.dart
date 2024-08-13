@@ -55,16 +55,16 @@ class _WebViewExampleState extends State<WebViewExample> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {
-            debugPrint('WebView is loading (progress : $progress%)');
+            // debugPrint('WebView is loading (progress : $progress%)');
           },
           onPageStarted: (String url) {
-            debugPrint('Page started loading: $url');
+            // debugPrint('Page started loading: $url');
             setState(() {
               isLoading = true;
             });
           },
           onPageFinished: (String url) {
-            debugPrint('Page finished loading: $url');
+            // debugPrint('Page finished loading: $url');
             setState(() {
               isLoading = false;
             });
@@ -80,12 +80,12 @@ class _WebViewExampleState extends State<WebViewExample> {
           },
           onNavigationRequest: (NavigationRequest request) {
             if (request.url.contains('status=approved&code=000')) {
-              debugPrint('blocking navigation to ${request.url}');
+              // debugPrint('blocking navigation to ${request.url}');
               Navigator.pop(context, "Success");
               return NavigationDecision.prevent;
             }
             if (request.url.contains('status=declined&code=106')) {
-              debugPrint('blocking navigation to ${request.url}');
+              // debugPrint('blocking navigation to ${request.url}');
               Navigator.pop(context, "Transaction declined or terminated");
               return NavigationDecision.prevent;
             }

@@ -16,16 +16,15 @@ class RemoverServices {
     InitModel responseData = InitModel();
     await http.post(
         Uri.parse(
-         platform .toLowerCase()== 'pro'? initUrlLive : initUrl,
+         platform.toLowerCase() == 'pro'? initUrlLive : initUrl,
         ),
         body: jsonEncode(body),
         headers: <String, String>{
           'authorization': basicAuth,
           "Content-Type": "application/json",
-          // "Cache-Control": "no-cache"
         }).then((value) {
       var decodedResponse = json.decode(value.body);
-      // print(decodedResponse);
+      // debugPrint(decodedResponse.toString());
       if (decodedResponse['code'] == 200) {
         responseData = InitModel.fromJson(decodedResponse);
       }

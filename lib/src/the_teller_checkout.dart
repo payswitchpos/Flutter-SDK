@@ -6,10 +6,11 @@ import 'services/remote_services.dart';
 
 /// A Calculator.
 class CheckoutRequest {
-  final service = RemoverServices();
+  final _service = RemoverServices();
   Future<dynamic> initRequest(BuildContext context,
       {String? email,
       String? redirectUrl,
+      String? paymentMethod,
       required String platform,
       required String amount,
       required String description,
@@ -30,9 +31,10 @@ class CheckoutRequest {
           "https://test.theteller.net/checkout/checkout/eU1xSFN5Ky92MUt5dmpnT",
       "email": email,
       "API_Key": apiKeys,
-      "apiuser": apiUser
+      "apiuser": apiUser,
+      "payment_method": paymentMethod??"both",
     };
-    await service
+    await _service
         .initiate(
             platform: platform, apiKey: apiKeys, userApi: apiUser, body: body)
         .then((response) async {
