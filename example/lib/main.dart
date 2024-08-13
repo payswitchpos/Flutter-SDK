@@ -25,16 +25,19 @@ class MyApp extends StatelessWidget {
               child: Text("Pay"),
               onTap: () async {
                 await chec
-                    .initRequest(navigatorKey.currentContext!,
-                        platform: 'pro',
-                        amount: '000000000010',
-                        apiKeys: kApiKeys,
-                        apiUser: kApiUser,
-                        description: 'Hello',
-                        email: 'theteller@payswitch.com.gh',
-                        merchantID: kmerchantId,
-                        transactionID: '000000000044',
-                        redirectUrl: "https://google.com")
+                    .initRequest(
+                  navigatorKey.currentContext!,
+                  platform: 'pro',
+                  amount: '000000000010',
+                  apiKeys: kApiKeys,
+                  apiUser: kApiUser,
+                  description: 'Hello',
+                  email: 'theteller@payswitch.com.gh',
+                  merchantID: kmerchantId,
+                  transactionID: '000000000044',
+                  paymentMethod: "momo",
+                  redirectUrl: "https://google.com",
+                )
                     .then((value) {
                   // final snackBar = SnackBar(
                   //   content: Text(value),
