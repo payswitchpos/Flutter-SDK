@@ -27,15 +27,15 @@ class MyApp extends StatelessWidget {
                 await chec
                     .initRequest(
                   navigatorKey.currentContext!,
-                  platform: 'pro',
+                  platform: 'sandbox',
                   amount: '000000000010',
                   apiKeys: kApiKeys,
                   apiUser: kApiUser,
                   description: 'Hello',
                   email: 'theteller@payswitch.com.gh',
                   merchantID: kmerchantId,
-                  transactionID: '000000000044',
-                  paymentMethod: "momo",
+                  transactionID: '000000000042',
+                  paymentMethod: "card",
                   redirectUrl: "https://google.com",
                 )
                     .then((value) {

@@ -6,7 +6,7 @@ import 'services/remote_services.dart';
 
 /// A Calculator.
 class CheckoutRequest {
-  final service = RemoverServices();
+  final _service = RemoverServices();
   Future<dynamic> initRequest(BuildContext context,
       {String? email,
       String? redirectUrl,
@@ -34,12 +34,12 @@ class CheckoutRequest {
       "apiuser": apiUser,
       "payment_method": paymentMethod??"both",
     };
-    await service
+    await _service
         .initiate(
             platform: platform, apiKey: apiKeys, userApi: apiUser, body: body)
         .then((response) async {
       if (response.status == 'success') {
-        debugPrint(response.checkoutUrl.toString());
+        // debugPrint(response.checkoutUrl.toString());
        
         data = await Navigator.push(
             context,
@@ -48,7 +48,7 @@ class CheckoutRequest {
                     themeColor: themeColor ?? const Color.fromARGB(255, 26, 3, 144),
                     url: response.checkoutUrl!)));
 
-        debugPrint("=====================$data");
+        // debugPrint("=====================$data");
       }
     });
 
