@@ -78,12 +78,12 @@ class _WebViewExampleState extends State<WebViewExample> {
                   ''');
           },
           onNavigationRequest: (NavigationRequest request) {
-            if (request.url.contains('status=approved&code=000')) {
+            if (request.url.contains('code=000')) {
               // debugPrint('blocking navigation to ${request.url}');
               Navigator.pop(context, "Success");
               return NavigationDecision.prevent;
             }
-            if (request.url.contains('status=declined&code=106')) {
+            if (request.url.contains('code=106')) {
               // debugPrint('blocking navigation to ${request.url}');
               Navigator.pop(context, "Transaction declined or terminated");
               return NavigationDecision.prevent;

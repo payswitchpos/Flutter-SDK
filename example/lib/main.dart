@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
                   description: 'Hello',
                   email: 'theteller@payswitch.com.gh',
                   merchantID: kmerchantId,
-                  transactionID: '000000000042',
+                  transactionID: '000000000052',
                   paymentMethod: "card",
                   redirectUrl: "https://google.com",
                 )
