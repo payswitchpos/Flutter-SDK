@@ -27,7 +27,6 @@ class _WebViewExampleState extends State<WebViewExample> {
   WebViewController? _controller;
   final GlobalKey webViewKey = GlobalKey();
 
-
   bool isLoading = false;
 
   @override
@@ -70,7 +69,7 @@ class _WebViewExampleState extends State<WebViewExample> {
             });
           },
           onWebResourceError: (WebResourceError error) {
-          debugPrint('''
+            debugPrint('''
           Page resource error:
           code: ${error.errorCode}
           description: ${error.description}
@@ -102,7 +101,14 @@ class _WebViewExampleState extends State<WebViewExample> {
               return NavigationDecision.prevent;
             }
 
+            if (request.url.contains('code=100')) {
+              debugPrint('blocking navigation to ${request.url}');
+              Navigator.pop(context, "Do Not Proceed");
+              return NavigationDecision.prevent;
+            }
+
             debugPrint('allowing navigation to ${request.url}');
+             Navigator.pop(context, "Payment Processing Failed");
             return NavigationDecision.navigate;
           },
         ),
@@ -141,10 +147,7 @@ class _WebViewExampleState extends State<WebViewExample> {
         ),
         body: isLoading
             ? const Center(child: CircularProgressIndicator())
-            : WebViewWidget(
-              key: webViewKey,
-              
-              controller: _controller!),
+            : WebViewWidget(key: webViewKey, controller: _controller!),
         // floatingActionButton: favoriteButton(),
       ),
     );
