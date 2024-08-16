@@ -95,7 +95,7 @@ class _WebViewExampleState extends State<WebViewExample> {
               return NavigationDecision.prevent;
             }
 
-            if (request.url.contains('code=101')) {
+            if (request.url.contains('code=103')) {
               debugPrint('blocking navigation to ${request.url}');
               Navigator.pop(context, "Wrong PIN or transaction timed out");
               return NavigationDecision.prevent;
@@ -103,7 +103,7 @@ class _WebViewExampleState extends State<WebViewExample> {
 
             if (request.url.contains('code=100')) {
               debugPrint('blocking navigation to ${request.url}');
-              Navigator.pop(context, "Do Not Proceed");
+              Navigator.pop(context, "Transaction not permitted to cardholder");
               return NavigationDecision.prevent;
             }
 
