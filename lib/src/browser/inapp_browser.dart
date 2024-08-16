@@ -108,7 +108,6 @@ class _WebViewExampleState extends State<WebViewExample> {
             }
 
             debugPrint('allowing navigation to ${request.url}');
-             Navigator.pop(context, "Payment Processing Failed");
             return NavigationDecision.navigate;
           },
         ),

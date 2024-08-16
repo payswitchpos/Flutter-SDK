@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
                 await chec
                     .initRequest(
                   navigatorKey.currentContext!,
-                  platform: 'sandbox',
+                  platform: 'pro',
                   amount: '000000000010',
                   apiKeys: kApiKeys,
                   apiUser: kApiUser,
