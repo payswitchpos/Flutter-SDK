@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
           body: Center(
             child: GestureDetector(
-              child: Text("Pay"),
+              child: const Text("Pay"),
               onTap: () async {
                 await chec
                     .initRequest(
@@ -34,14 +34,35 @@ class MyApp extends StatelessWidget {
                   description: 'Hello',
                   email: 'theteller@payswitch.com.gh',
                   merchantID: kmerchantId,
-                  transactionID: '000000000052',
-                  paymentMethod: "card",
+                  transactionID: '000000000051',
+                  paymentMethod: "momo",
                   redirectUrl: "https://google.com",
                 )
                     .then((value) {
-                  // final snackBar = SnackBar(
-                  //   content: Text(value),
-                  // );
+                      print("================================$value---------------");
+                  if (value == "Success") {
+                    showDialog(
+                        context: navigatorKey.currentContext!,
+                        builder: (context) {
+                          return const AlertDialog(
+                            content: Column(
+                              // mainAxisSize:,
+                              children: [Text("Successful Payment")],
+                            ),
+                          );
+                        });
+                  }else if(value != null && value != "Success"){
+                     showDialog(
+                        context: navigatorKey.currentContext!,
+                        builder: (context) {
+                          return  AlertDialog(
+                            content: Column(
+                              // mainAxisSize:,
+                              children: [Text("$value")],
+                            ),
+                          );
+                        });
+                  }
                 });
               },
             ),
