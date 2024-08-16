@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import  'package:http/http.dart' as http ;
 import 'package:the_teller_checkout/src/model/model.dart';
 
@@ -24,7 +25,7 @@ class RemoverServices {
           "Content-Type": "application/json",
         }).then((value) {
       var decodedResponse = json.decode(value.body);
-      // debugPrint(decodedResponse.toString());
+      debugPrint(decodedResponse.toString());
       if (decodedResponse['code'] == 200) {
         responseData = InitModel.fromJson(decodedResponse);
       }
