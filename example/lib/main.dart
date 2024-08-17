@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
             child: GestureDetector(
               child: Text("Pay"),
               onTap: () async {
+
                 await chec
                     .initRequest(
                   navigatorKey.currentContext!,
@@ -34,14 +35,42 @@ class MyApp extends StatelessWidget {
                   description: 'Hello',
                   email: 'theteller@payswitch.com.gh',
                   merchantID: kmerchantId,
-                  transactionID: '000000000052',
-                  paymentMethod: "card",
+                  transactionID: '000000000056',
+                  paymentMethod: "both",
                   redirectUrl: "https://google.com",
                 )
                     .then((value) {
-                  // final snackBar = SnackBar(
-                  //   content: Text(value),
-                  // );
+        
+                  if (value == "Success") {
+                    showDialog(
+                        context: navigatorKey.currentContext!,
+                        builder: (context) {
+                          return const AlertDialog(
+                            content: Column(
+                              mainAxisSize:MainAxisSize.min,
+                              // mainAxisSize:,
+                              children: [Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("Successful Payment"),
+                              )],
+                            ),
+                          );
+                        });
+                  } else if (value != null && value != "Success") {
+                    showDialog(
+                        context: navigatorKey.currentContext!,
+                        builder: (context) {
+                          return AlertDialog(
+                            content: Column(
+                              mainAxisSize:MainAxisSize.min,
+                              children: [Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text("$value"),
+                              )],
+                            ),
+                          );
+                        });
+                  }
                 });
               },
             ),
