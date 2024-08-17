@@ -83,9 +83,21 @@ class _WebViewExampleState extends State<WebViewExample> {
               Navigator.pop(context, "Success");
               return NavigationDecision.prevent;
             }
-            if (request.url.contains('code=106')) {
+            if (request.url.contains('code=111')) {
+              // debugPrint('blocking navigation to ${request.url}');
+              Navigator.pop(context, "Payment request sent successfully");
+              return NavigationDecision.prevent;
+            }
+
+            if (request.url.contains('code=104')) {
               // debugPrint('blocking navigation to ${request.url}');
               Navigator.pop(context, "Transaction declined or terminated");
+              return NavigationDecision.prevent;
+            }
+
+             if (request.url.contains('code=102')) {
+              // debugPrint('blocking navigation to ${request.url}');
+              Navigator.pop(context, "Number not registered for mobile money");
               return NavigationDecision.prevent;
             }
 
@@ -101,9 +113,35 @@ class _WebViewExampleState extends State<WebViewExample> {
               return NavigationDecision.prevent;
             }
 
+ if (request.url.contains('code=undefined')) {
+              debugPrint('blocking navigation to ${request.url}');
+              Navigator.pop(context, "Transaction Failed");
+              return NavigationDecision.prevent;
+            }
+
+
             if (request.url.contains('code=100')) {
               debugPrint('blocking navigation to ${request.url}');
               Navigator.pop(context, "Transaction not permitted to cardholder");
+              return NavigationDecision.prevent;
+            }
+
+            if (request.url.contains('code=909')) {
+              debugPrint('blocking navigation to ${request.url}');
+              Navigator.pop(context,
+                  "Duplicate Transaction ID. Transaction ID must be unique");
+              return NavigationDecision.prevent;
+            }
+
+            if (request.url.contains('code=600')) {
+              debugPrint('blocking navigation to ${request.url}');
+              Navigator.pop(context, "Access Denied");
+              return NavigationDecision.prevent;
+            }
+
+            if (request.url.contains('code=979')) {
+              debugPrint('blocking navigation to ${request.url}');
+              Navigator.pop(context, "Access Denied. Invalid Credential");
               return NavigationDecision.prevent;
             }
 

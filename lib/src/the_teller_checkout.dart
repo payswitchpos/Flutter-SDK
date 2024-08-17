@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:the_teller_checkout/src/browser/inapp_browser.dart';
 import 'services/remote_services.dart';
 
-/// A Calculator.
 class CheckoutRequest {
   final _service = RemoverServices();
   Future<dynamic> initRequest(BuildContext context,
@@ -34,12 +33,14 @@ class CheckoutRequest {
       "apiuser": apiUser,
       "payment_method": paymentMethod??"both",
     };
+
     await _service
         .initiate(
+          context,
             platform: platform, apiKey: apiKeys, userApi: apiUser, body: body)
         .then((response) async {
-      if (response.status == 'success') {
-        // debugPrint(response.checkoutUrl.toString());
+        // print(response);
+      if (response.status?.toLowerCase() == 'success') {
        
         data = await Navigator.push(
             context,
