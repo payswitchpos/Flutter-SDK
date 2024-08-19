@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
             child: GestureDetector(
               child: const Text("Pay"),
               onTap: () async {
+
                 await chec
                     .initRequest(
                   navigatorKey.currentContext!,
@@ -34,31 +35,38 @@ class MyApp extends StatelessWidget {
                   description: 'Hello',
                   email: 'theteller@payswitch.com.gh',
                   merchantID: kmerchantId,
-                  transactionID: '000000000051',
-                  paymentMethod: "momo",
+                  transactionID: '000000000056',
+                  paymentMethod: "both",
                   redirectUrl: "https://google.com",
                 )
                     .then((value) {
-                      print("================================$value---------------");
+        
                   if (value == "Success") {
                     showDialog(
                         context: navigatorKey.currentContext!,
                         builder: (context) {
                           return const AlertDialog(
                             content: Column(
+                              mainAxisSize:MainAxisSize.min,
                               // mainAxisSize:,
-                              children: [Text("Successful Payment")],
+                              children: [Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("Successful Payment"),
+                              )],
                             ),
                           );
                         });
-                  }else if(value != null && value != "Success"){
-                     showDialog(
+                  } else if (value != null && value != "Success") {
+                    showDialog(
                         context: navigatorKey.currentContext!,
                         builder: (context) {
-                          return  AlertDialog(
+                          return AlertDialog(
                             content: Column(
-                              // mainAxisSize:,
-                              children: [Text("$value")],
+                              mainAxisSize:MainAxisSize.min,
+                              children: [Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text("$value"),
+                              )],
                             ),
                           );
                         });
