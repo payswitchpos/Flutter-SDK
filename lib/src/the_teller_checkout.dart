@@ -8,7 +8,7 @@ class CheckoutRequest {
   final _service = RemoverServices();
   Future<dynamic> initRequest(BuildContext context,
       {String? email,
-      String? redirectUrl,
+      required String redirectUrl,
       String? paymentMethod,
       required String platform,
       required String amount,
@@ -17,8 +17,6 @@ class CheckoutRequest {
       required String merchantID,
       required String apiUser,
       required String transactionID,
-
-
       Color? themeColor}) async {
     dynamic data;
     Map<String, dynamic> body = {
@@ -26,30 +24,26 @@ class CheckoutRequest {
       "transaction_id": transactionID,
       "desc": description,
       "amount": amount,
-      "redirect_url": redirectUrl ??
-          "https://test.theteller.net/checkout/checkout/eU1xSFN5Ky92MUt5dmpnT",
+      "redirect_url": redirectUrl,
       "email": email,
       "API_Key": apiKeys,
       "apiuser": apiUser,
-      "payment_method": paymentMethod??"both",
+      "payment_method": paymentMethod ?? "both",
     };
 
     await _service
-        .initiate(
-          context,
+        .initiate(context,
             platform: platform, apiKey: apiKeys, userApi: apiUser, body: body)
         .then((response) async {
-        // print(response);
       if (response.status?.toLowerCase() == 'success') {
-       
         data = await Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) => WebViewExample(
-                    themeColor: themeColor ?? const Color.fromARGB(255, 26, 3, 144),
+                  redirectUrl: redirectUrl,
+                    themeColor:
+                        themeColor ?? const Color.fromARGB(255, 26, 3, 144),
                     url: response.checkoutUrl!)));
-
-        // debugPrint("=====================$data");
       }
     });
 

@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
           body: Center(
             child: GestureDetector(
-              child: Text("Pay"),
+              child: const Text("Pay"),
               onTap: () async {
 
                 await chec
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
                   description: 'Hello',
                   email: 'theteller@payswitch.com.gh',
                   merchantID: kmerchantId,
-                  transactionID: '000000000056',
+                  transactionID: '000800000085',
                   paymentMethod: "both",
                   redirectUrl: "https://google.com",
                 )

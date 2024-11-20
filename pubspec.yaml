@@ -16,7 +16,7 @@ dependencies:
   flutter_lints: ^2.0.0
   http: ^0.13.6
   path_provider: ^2.0.15
-  url_launcher: ^6.1.11
+  # url_launcher: ^6.1.11
   webview_flutter: ^4.2.0
   
   

@@ -4,6 +4,8 @@
 
 // ignore_for_file: public_member_api_docs
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 // #docregion platform_imports
@@ -15,9 +17,13 @@ import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 
 class WebViewExample extends StatefulWidget {
   final String url;
+  final String redirectUrl;
   final Color themeColor;
   const WebViewExample(
-      {super.key, required this.url, required this.themeColor});
+      {super.key,
+      required this.url,
+      required this.themeColor,
+      required this.redirectUrl});
 
   @override
   State<WebViewExample> createState() => _WebViewExampleState();
@@ -62,11 +68,23 @@ class _WebViewExampleState extends State<WebViewExample> {
               isLoading = true;
             });
           },
-          onPageFinished: (String url) {
-            // debugPrint('Page finished loading: $url');
+          onPageFinished: (String url) async {
+            debugPrint('Page finished loading: $url');
+            // Inject JavaScript to get the JSON data
+            var jsonString = await _controller!
+                .runJavaScriptReturningResult("document.body.innerText");
+
             setState(() {
               isLoading = false;
             });
+
+            // Process the JSON string
+            if (jsonString != "") {
+              Map<String, dynamic> jsonData = jsonDecode(jsonString.toString());
+              // status = jsonData['code'] ? "000" : "failed";
+              // print("-----$status--------");
+              Navigator.pop(context, jsonData);
+            }
           },
           onWebResourceError: (WebResourceError error) {
             debugPrint('''
@@ -79,8 +97,8 @@ class _WebViewExampleState extends State<WebViewExample> {
           },
           onNavigationRequest: (NavigationRequest request) {
             if (request.url.contains('code=000')) {
-              // debugPrint('blocking navigation to ${request.url}');
-              Navigator.pop(context, "Success");
+              debugPrint('blocking navigation to ${"Success"}');
+              Navigator.pop(context, request.url);
               return NavigationDecision.prevent;
             }
             if (request.url.contains('code=111')) {
@@ -95,7 +113,7 @@ class _WebViewExampleState extends State<WebViewExample> {
               return NavigationDecision.prevent;
             }
 
-             if (request.url.contains('code=102')) {
+            if (request.url.contains('code=102')) {
               // debugPrint('blocking navigation to ${request.url}');
               Navigator.pop(context, "Number not registered for mobile money");
               return NavigationDecision.prevent;
@@ -113,12 +131,11 @@ class _WebViewExampleState extends State<WebViewExample> {
               return NavigationDecision.prevent;
             }
 
- if (request.url.contains('code=undefined')) {
+            if (request.url.contains('code=undefined')) {
               debugPrint('blocking navigation to ${request.url}');
               Navigator.pop(context, "Transaction Failed");
               return NavigationDecision.prevent;
             }
-
 
             if (request.url.contains('code=100')) {
               debugPrint('blocking navigation to ${request.url}');
@@ -142,6 +159,18 @@ class _WebViewExampleState extends State<WebViewExample> {
             if (request.url.contains('code=979')) {
               debugPrint('blocking navigation to ${request.url}');
               Navigator.pop(context, "Access Denied. Invalid Credential");
+              return NavigationDecision.prevent;
+            }
+
+            if (request.url.contains('code=959')) {
+              debugPrint('blocking navigation to ${request.url}');
+              Navigator.pop(context, "Duplicate Transaction Id.");
+              return NavigationDecision.prevent;
+            }
+
+              if (request.url.contains('code=900')) {
+              debugPrint('Transaction navigation to ${request.url}');
+              Navigator.pop(context, "Cancelled");
               return NavigationDecision.prevent;
             }
 
